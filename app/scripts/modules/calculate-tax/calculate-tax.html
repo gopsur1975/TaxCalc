@@ -1,1 +1,21 @@
-<div><select ng-model="tax.AY" ng-options="year for year in tax.years"></select></div><pre>{{tax | json}}</pre>
+
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Income Details</h1>
+    </ion-header-bar>
+
+    <ion-content>
+      <div><select ng-model="tax.AY" ng-options="year for year in tax.years"></select></div>
+      <pre>{{tax | json}}</pre>
+      <div class="list">
+        <form ng-submit="calculateTax(taxableIncome)" name="taxForm">
+          <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Your Taxable Income " ng-model="taxableIncome" required> 
+            </label>
+            <button class="button button-small" ng-disabled="taxForm.$invalid">
+              Calculate Tax
+            </button>
+          </div>
+        </form>
+      </div>
+    </ion-content>
