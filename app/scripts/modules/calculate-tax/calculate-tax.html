@@ -4,18 +4,34 @@
     </ion-header-bar>
 
     <ion-content>
-      <div><select ng-model="tax.AY" ng-options="year for year in tax.years"></select></div>
-      <pre>{{tax | json}}</pre>
       <div class="list">
-        <form ng-submit="calculateTax(taxableIncome)" name="taxForm">
+        <form ng-submit="tax.calculateTax()" name="taxForm">
           <div class="item item-input-inset">
             <label class="item-input-wrapper">
-              <input type="text" placeholder="Your Taxable Income " ng-model="taxableIncome" required> 
+              <select ng-model="tax.AY" ng-options="year for year in tax.years"></select>
             </label>
-            <button class="button button-small" ng-disabled="taxForm.$invalid">
+			</div>
+			<div class="item item-input-inset">
+			<label class="item-input-wrapper">
+              <input type="text" placeholder="Your Taxable Income " ng-model="tax.taxableIncome" required> 
+            </label>
+			</div>
+			<div class="item item-input-inset">
+			<label class="item-input-wrapper">
+              <input type="radio" ng-model="tax.gender" value="male" /> Male
+			  <input type="radio" ng-model="tax.gender" value="female"/> Female
+            </label>
+			</div>
+			<div class="item item-input-inset">
+			<label class="item-input-wrapper">
+              <input type="number" ng-model="tax.age"> 
+            </label>
+			</div>
+          
+		  <button class="button button-small" ng-disabled="taxForm.$invalid">
               Calculate Tax
             </button>
-          </div>
         </form>
+		<pre>{{tax | json}}</pre>
       </div>
     </ion-content>
