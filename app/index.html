@@ -41,9 +41,16 @@
   </head>
   <body ng-app="TaxCalculator">
     <ion-nav-view></ion-nav-view>
-    <script src="scripts/states.js"></script>
-    <script src="scripts/modules/calculate-tax/calculate-tax.js"></script>
-    <script src="scripts/modules/calculate-tax/services/income-tax-service.js"></script>
+	<!-- include: "type": "js", "ordering": "top-down", "files": ["scripts/**/*.js","!scripts/**/*.spec.js"] -->
+ <script src="scripts/app.js"></script>
+	<script src="scripts/configuration.js"></script>
+	<script src="scripts/states.js"></script>
+	<script src="scripts/modules/assessment-year/assessment-year-component.js"></script>
+	<script src="scripts/modules/assessment-year/assessment-year.js"></script>
 	<script src="scripts/modules/calculate-tax/calculate-tax-component.js"></script>
+	<script src="scripts/modules/calculate-tax/calculate-tax.js"></script>
+	<script src="scripts/modules/calculate-tax/services/income-tax-2016-2017.js"></script>
+	<script src="scripts/modules/calculate-tax/services/income-tax-service.js"></script>
+	<!-- /include -->
   </body>
 </html>

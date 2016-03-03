@@ -1,3 +1,4 @@
+'use strict';
 angular.module('TaxCalculator')
 .directive('calculateTax', function(){
 	return {
@@ -6,4 +7,4 @@ angular.module('TaxCalculator')
 		templateUrl : 'scripts/modules/calculate-tax/calculate-tax.html',
 		controller: 'CalculateTaxCtrl'
 	};
-})
+});

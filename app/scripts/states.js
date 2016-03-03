@@ -12,9 +12,14 @@ angular.module('TaxCalculator')
 		url: 'home',
 		templateUrl: 'scripts/modules/home/home.html'
 	})
+	.state('app.assessment-year',{
+		parent:'app',
+		url: 'assessment-year',		
+		template: '<assessment-year></assessment-year>'
+	})
 	.state('app.calculate-tax',{
-		url:'calculate-tax',
+		url:'{{assessmentYear}/calculate-tax',
 		parent: 'app',
 		template: '<calculate-tax></calculate-tax>'
-	})
+	});
 });

@@ -1,8 +1,6 @@
+ 'use strict';
  angular.module('TaxCalculator')
  .factory('IncomeTaxService', function($http){
-	 return {
-		 calculateTax: calculateTax
-	 };
 	 function getTaxConfigByYear(yearRange){
 		 return $http.get('/data/'+yearRange+'.json').then(function(result){
 			 return result.data;
@@ -48,5 +46,8 @@
 			return tax;
 		 });
 	 }
+	 return {
+		 calculateTax: calculateTax
+	 };	 
  });
  

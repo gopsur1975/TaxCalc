@@ -6,7 +6,7 @@
     <ion-content>
       <div class="list">
         <form ng-submit="tax.calculateTax()" name="taxForm">
-          <div class="item item-input-inset">
+          <!-- <div class="item item-input-inset">
             <label class="item-input-wrapper">
               <select ng-model="tax.AY" ng-options="year for year in tax.years"></select>
             </label>
@@ -27,7 +27,30 @@
               <input type="number" ng-model="tax.age"> 
             </label>
 			</div>
-          
+          -->
+		  
+		  <!--<div class="list">
+		  <label class="item item-input">
+			<span class="input-label">Username</span>
+			<input type="text">
+		  </label>
+		  <label class="item item-input">
+			<span class="input-label">Password</span>
+			<input type="password">
+		  </label>
+		</div>-->
+		  
+		  <div class="group" ng-repeat="(groupName, group) in tax.ViewData">
+			<div class="list" ng-repeat="(fieldName, field) in group">
+				<h5>{{groupName}}</h5>
+				<label class="item item-input">
+					<span class="input-label">{{field.label}}</span>
+					<div ng-switch="field.type">
+						<input ng-switch-default type="{{field.type.toLowerCase()}}" name="{{fieldName}}" ng-model="tax.Input[fieldName]"/>
+					</div>
+				</label>
+			</div>
+		  </div>
 		  <button class="button button-small" ng-disabled="taxForm.$invalid">
               Calculate Tax
             </button>

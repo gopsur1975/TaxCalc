@@ -25,7 +25,8 @@ module.exports = function (grunt) {
       styles: 'styles',
       images: 'images',
       test: 'test',
-      dist: 'www'
+      dist: 'www',
+	  data: 'data'
     },
 
     // Environment Variables for Angular App
@@ -68,7 +69,7 @@ module.exports = function (grunt) {
         tasks: ['newer:copy:app']
       },
       js: {
-        files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js'],
+        files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js','<%= yeoman.app %>/<%= yeoman.data %>/**/*.json'],
         tasks: ['newer:copy:app', 'newer:jshint:all']
       },
       compass: {
@@ -244,6 +245,19 @@ module.exports = function (grunt) {
         }]
       }
     },
+	
+	includeSource: {
+            options: {
+                // Task-specific options go here.
+                basePath: 'app/'
+            },
+            updateJavaScript: {
+                files: {
+                    'app/index.html': 'app/index.html'
+                }
+                // Target-specific file lists and/or options go here.
+            },
+        },
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -526,6 +540,7 @@ module.exports = function (grunt) {
     'clean',
     'ngconstant:development',
     'wiredep',
+	'includeSource',
     'concurrent:server',
     'autoprefixer',
     'newer:copy:app',

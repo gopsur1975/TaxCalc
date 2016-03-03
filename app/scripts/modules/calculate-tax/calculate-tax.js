@@ -1,21 +1,16 @@
 'use strict';
 angular.module('TaxCalculator')
-.controller('CalculateTaxCtrl', function(IncomeTaxService){
+.controller('CalculateTaxCtrl', function(TaxFactory, $stateParams){
 	var self = this;
-	this.years = [];
-	var currentDate = new Date();
-	var currentYear = currentDate.getFullYear();
-	this.taxableIncome = 0;
-    this.totalTax = 0;
-	for(var i=0;i<3;i++){
-		this.years.push((currentYear-i)+'-'+(currentYear-(i-1)));
-	}
-	
-	this.AY = this.years[0];
+	var TaxService = TaxFactory.getService($stateParams.assessmentYear);	
+	TaxService.GetViewData().then(function(_viewData){
+		self.ViewData = _viewData;
+	});
 	
 	this.calculateTax=function(){
-		IncomeTaxService.calculateTax(this.AY, this.gender, this.age, this.taxableIncome).then(function(tax){
+		/*IncomeTaxService.calculateTax(this.AY, this.gender, this.age, this.taxableIncome).then(function(tax){
 			self.finalTax = tax;
-		});
+		});*/
+		self.finalTax = TaxService.CalculateTax(this.taxableIncome);
     };
 });
